@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Portfolio of Hatesin Marajah Onwudiwe, web developer, UI/UX designer and virtual assistant in Enugu, Nigeria.">
+<title>Hatesin Onwudiwe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: the page is a design canvas — each section is a labelled "frame" on a dot grid, from Figma to VS Code */
+:root{
+  --bg:#F3F4F8; --surface:#FFFFFF; --ink:#14162B; --muted:#5B6078; --line:#DADCE8;
+  --accent:#3B3FE0; --accent-ink:#FFFFFF; --spark:#FF6A3D; --dot:#C9CCDB; --code:#ECEDF6;
+  --display:"Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body:"Figtree", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1020; --surface:#181A2E; --ink:#ECEDF7; --muted:#A1A5C0; --line:#2C2F4A;
+  --accent:#8B8EFF; --accent-ink:#0F1020; --spark:#FF8A63; --dot:#2A2D47; --code:#222440; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1020; --surface:#181A2E; --ink:#ECEDF7; --muted:#A1A5C0; --line:#2C2F4A;
+  --accent:#8B8EFF; --accent-ink:#0F1020; --spark:#FF8A63; --dot:#2A2D47; --code:#222440; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink); font:16px/1.6 var(--body);
+  background-image:radial-gradient(var(--dot) 1px, transparent 1.2px); background-size:22px 22px;
+  padding-inline:16px; padding-block:0 56px;
+}
+.wrap{max-width:1040px; margin:0 auto; display:flex; flex-direction:column; gap:56px}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+
+/* top bar */
+.bar{position:sticky; top:env(safe-area-inset-top,0px); z-index:5; margin-inline:-16px; padding:12px 16px;
+  background:color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter:blur(8px); border-bottom:1px solid var(--line)}
+.bar-in{max-width:1040px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap}
+.logo{font:800 18px var(--display); letter-spacing:-.02em; color:var(--ink); text-decoration:none}
+.logo span{color:var(--accent)}
+nav{display:flex; gap:18px; flex-wrap:wrap}
+nav a{font:500 13px var(--mono); color:var(--muted); text-decoration:none}
+nav a:hover{color:var(--ink)}
+
+/* frame label like a design tool */
+.frame{position:relative}
+.tag{font:500 12px var(--mono); color:var(--accent); margin-bottom:10px; display:flex; gap:8px; align-items:center}
+.tag::before{content:"#"; opacity:.6}
+
+/* hero with selection box */
+.hero{padding-top:56px; display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); gap:40px; align-items:end}
+.sel{position:relative; border:1.5px solid var(--accent); padding:20px 22px; margin-top:6px}
+.sel i{position:absolute; width:9px; height:9px; background:var(--surface); border:1.5px solid var(--accent)}
+.sel i:nth-child(1){top:-5px; left:-5px} .sel i:nth-child(2){top:-5px; right:-5px}
+.sel i:nth-child(3){bottom:-5px; left:-5px} .sel i:nth-child(4){bottom:-5px; right:-5px}
+.sel .dim{position:absolute; bottom:-30px; left:50%; transform:translateX(-50%); background:var(--accent); color:var(--accent-ink);
+  font:500 11px var(--mono); padding:2px 8px; border-radius:4px; white-space:nowrap}
+h1{font:800 clamp(44px, 8vw, 92px)/.95 var(--display); letter-spacing:-.04em; margin:0; text-wrap:balance}
+h1 em{font-style:normal; color:var(--accent)}
+.roles{margin-top:44px; display:flex; flex-wrap:wrap; gap:8px}
+.chip{font:500 13px var(--mono); padding:6px 12px; border-radius:999px; border:1px solid var(--line); background:var(--surface)}
+.chip b{color:var(--spark); font-weight:500}
+.intro{color:var(--muted); font-size:17px; max-width:42ch; margin:0}
+.cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:20px}
+.btn{font:600 14px var(--body); padding:11px 18px; border-radius:8px; text-decoration:none; border:1px solid var(--accent); cursor:pointer}
+.btn.primary{background:var(--accent); color:var(--accent-ink)}
+.btn.ghost{background:transparent; color:var(--ink); border-color:var(--line)}
+
+h2{font:800 clamp(28px,4.5vw,40px)/1.1 var(--display); letter-spacing:-.03em; margin:0 0 24px; text-wrap:balance}
+
+/* skills */
+.skills{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:16px}
+.skill{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:22px; display:flex; flex-direction:column; gap:10px;
+  transition:transform .2s, border-color .2s}
+.skill:hover{transform:translateY(-3px); border-color:var(--accent)}
+.skill svg{width:30px; height:30px; stroke:var(--accent); fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round}
+.skill h3{font:600 20px/1.2 var(--display); margin:0; letter-spacing:-.01em}
+.skill p{margin:0; color:var(--muted); font-size:14.5px}
+.tools{margin-top:16px; display:flex; flex-wrap:wrap; gap:12px; align-items:center}
+.tools .lbl{font:500 12px var(--mono); color:var(--muted); text-transform:uppercase; letter-spacing:.08em}
+
+/* workflow strip: Figma -> VS Code */
+.flow{display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); gap:16px; align-items:stretch}
+.pane{background:var(--surface); border:1px solid var(--line); border-radius:12px; overflow:hidden; min-width:0}
+.pane-h{font:500 12px var(--mono); color:var(--muted); padding:10px 14px; border-bottom:1px solid var(--line); display:flex; gap:6px; align-items:center}
+.pane-h span{width:8px; height:8px; border-radius:50%; background:var(--line)}
+.pane-b{padding:18px}
+.wire{display:grid; gap:8px}
+.wire div{background:var(--code); border-radius:6px; height:14px}
+.wire .w1{height:28px; width:60%; background:var(--accent); opacity:.85}
+.wire .w2{width:90%} .wire .w3{width:75%}
+.wire .row{display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; background:none; height:auto}
+.wire .row div{height:48px}
+pre{margin:0; font:13px/1.7 var(--mono); overflow-x:auto; color:var(--ink)}
+.k{color:var(--accent)} .s{color:var(--spark)} .c{color:var(--muted)}
+.arrow{display:grid; place-items:center; font:600 22px var(--mono); color:var(--accent)}
+
+/* projects */
+.projects{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:20px}
+.proj{background:var(--surface); border:1px solid var(--line); border-radius:14px; overflow:hidden; display:flex; flex-direction:column}
+.thumb{aspect-ratio:16/9; max-width:100%; position:relative; overflow:hidden; border-bottom:1px solid var(--line)}
+.thumb.crypto{background:linear-gradient(135deg, var(--ink), color-mix(in srgb, var(--accent) 70%, var(--ink)))}
+.thumb.wall{display:grid; grid-template-columns:repeat(4,1fr); grid-template-rows:repeat(2,1fr); gap:6px; padding:12px; background:var(--code)}
+.thumb.wall div{border-radius:6px}
+.art{position:absolute; inset:18px; display:flex; flex-direction:column; gap:8px; color:#fff}
+.art .ticker{font:500 12px var(--mono); opacity:.8; display:flex; gap:14px}
+.art .headline{font:800 clamp(18px,2.6vw,26px)/1.1 var(--display); max-width:16ch; margin-top:auto}
+.art .ln{height:6px; border-radius:3px; background:rgba(255,255,255,.35)}
+.proj-b{padding:20px 22px; display:flex; flex-direction:column; gap:8px}
+.proj-b h3{font:600 22px/1.2 var(--display); margin:0}
+.proj-b p{margin:0; color:var(--muted)}
+.meta{font:500 12px var(--mono); color:var(--accent)}
+
+/* timeline */
+.two{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:20px}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:24px; display:flex; flex-direction:column; gap:8px}
+.card .when{font:500 13px var(--mono); color:var(--spark); font-variant-numeric:tabular-nums}
+.card h3{font:600 22px/1.2 var(--display); margin:0}
+.card .sub{font-weight:600; color:var(--ink); margin:0}
+.card p{margin:0; color:var(--muted)}
+
+/* about */
+.about{display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); gap:32px; align-items:start}
+.about p{margin:0 0 14px; max-width:62ch; font-size:17px}
+.facts{display:grid; gap:0; border-top:1px solid var(--line)}
+.facts div{display:flex; justify-content:space-between; gap:16px; padding:12px 0; border-bottom:1px solid var(--line); font-size:15px}
+.facts dt{font:500 12px var(--mono); color:var(--muted); text-transform:uppercase; letter-spacing:.08em; padding-top:3px}
+.facts dd{margin:0; text-align:right; font-weight:500}
+
+/* contact */
+.contact{background:var(--accent); color:var(--accent-ink); border-radius:18px; padding:clamp(24px,5vw,48px); display:grid; gap:24px}
+.contact h2{margin:0; color:var(--accent-ink)}
+.contact .tag{color:var(--accent-ink); opacity:.8}
+.lines{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:14px}
+.line{border:1px solid color-mix(in srgb, var(--accent-ink) 30%, transparent); border-radius:12px; padding:16px; display:flex; flex-direction:column; gap:6px; min-width:0}
+.line small{font:500 11px var(--mono); text-transform:uppercase; letter-spacing:.1em; opacity:.75}
+.line .val{font:600 17px var(--body); word-break:break-all; user-select:all}
+.copy{align-self:flex-start; font:500 12px var(--mono); background:var(--accent-ink); color:var(--accent); border:0; padding:6px 10px; border-radius:6px; cursor:pointer}
+
+footer{font:500 12px var(--mono); color:var(--muted); text-align:center}
+
+@media (max-width:860px){
+  .hero,.about{grid-template-columns:1fr}
+  .skills{grid-template-columns:repeat(2, minmax(0,1fr))}
+  .flow{grid-template-columns:1fr} .arrow{transform:rotate(90deg)}
+  .lines{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .skills,.projects,.two{grid-template-columns:1fr}
+  nav{gap:12px}
+}
+@media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important} }
+</style>
+<style>html{scroll-behavior:smooth} body{margin:0} img{max-width:100%}</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-in">
+    <a class="logo" href="#top">hatesin<span>.</span>dev</a>
+    <nav aria-label="Sections">
+      <a href="#skills">skills</a><a href="#work">work</a><a href="#experience">experience</a><a href="#about">about</a><a href="#contact">contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <section class="hero frame">
+    <div>
+      <div class="tag">Frame / Hello</div>
+      <div class="sel">
+        <i></i><i></i><i></i><i></i>
+        <h1>Hatesin Marajah <em>Onwudiwe</em></h1>
+        <span class="dim">Web Developer · UI/UX Designer</span>
+      </div>
+      <div class="roles">
+        <span class="chip"><b>●</b> Web Developer</span>
+        <span class="chip"><b>●</b> UI/UX Designer</span>
+        <span class="chip"><b>●</b> Virtual Assistant</span>
+      </div>
+    </div>
+    <div>
+      <p class="intro">I build real websites, from the first frame in Figma to the final line of code in VS Code. Aptech-trained, freelancing, based in Enugu, Nigeria.</p>
+      <div class="cta">
+        <a class="btn primary" href="#contact">Work with me</a>
+        <a class="btn ghost" href="#work">See projects</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="frame" id="skills">
+    <div class="tag">Frame / Skills</div>
+    <h2>What I bring to a project</h2>
+    <div class="skills">
+      <article class="skill">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></svg>
+        <h3>Web Development</h3>
+        <p>Building working websites in code, turning designs into pages people can browse and use.</p>
+      </article>
+      <article class="skill">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 9v12"/></svg>
+        <h3>UI/UX Design</h3>
+        <p>Planning layouts and user flows in Figma so a site is clear and easy to use before it is built.</p>
+      </article>
+      <article class="skill">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg>
+        <h3>Virtual Assistance</h3>
+        <p>Reliable remote support for clients, keeping tasks, communication and admin work on track.</p>
+      </article>
+      <article class="skill">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9h12a3 3 0 013 3v2a3 3 0 01-5.2 2L14 14h-4l-1.8 2A3 3 0 013 14v-2a3 3 0 013-3z"/><path d="M8 11v3M6.5 12.5h3M15.5 12h.01M17.5 13.5h.01"/></svg>
+        <h3>Gaming</h3>
+        <p>A background in strategy and teamwork that shows up as fast, calm problem-solving.</p>
+      </article>
+    </div>
+    <div class="tools">
+      <span class="lbl">Tools</span>
+      <span class="chip">VS Code · coding</span>
+      <span class="chip">Figma · design</span>
+      <span class="lbl" style="margin-left:8px">Language</span>
+      <span class="chip">English</span>
+    </div>
+  </section>
+
+  <section class="frame" aria-label="How I work">
+    <div class="tag">Frame / Workflow</div>
+    <h2>Design it, then build it</h2>
+    <div class="flow">
+      <div class="pane">
+        <div class="pane-h"><span></span><span></span><span></span>&nbsp;Figma — homepage</div>
+        <div class="pane-b wire" aria-hidden="true">
+          <div class="w1"></div><div class="w2"></div><div class="w3"></div>
+          <div class="row"><div></div><div></div><div></div></div>
+        </div>
+      </div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="pane">
+        <div class="pane-h"><span></span><span></span><span></span>&nbsp;VS Code — index.html</div>
+        <div class="pane-b">
+<pre><span class="c">&lt;!-- from frame to code --&gt;</span>
+<span class="k">&lt;section</span> class=<span class="s">"hero"</span><span class="k">&gt;</span>
+  <span class="k">&lt;h1&gt;</span>Your idea, live<span class="k">&lt;/h1&gt;</span>
+  <span class="k">&lt;a</span> href=<span class="s">"#start"</span><span class="k">&gt;</span>Start<span class="k">&lt;/a&gt;</span>
+<span class="k">&lt;/section&gt;</span></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="frame" id="work">
+    <div class="tag">Frame / Projects</div>
+    <h2>Websites I've built</h2>
+    <div class="projects">
+      <article class="proj">
+        <div class="thumb crypto" aria-hidden="true">
+          <div class="art">
+            <div class="ticker"><span>BTC ▲</span><span>ETH ▲</span><span>SOL ▼</span></div>
+            <div class="headline">Writing on the future of crypto</div>
+            <div class="ln" style="width:80%"></div><div class="ln" style="width:55%"></div>
+          </div>
+        </div>
+        <div class="proj-b">
+          <span class="meta">Web development · UI/UX</span>
+          <h3>Crypto Writing Website</h3>
+          <p>A website for writing and publishing crypto articles.</p>
+        </div>
+      </article>
+      <article class="proj">
+        <div class="thumb wall" aria-hidden="true">
+          <div style="background:linear-gradient(160deg,#3B3FE0,#8B8EFF)"></div>
+          <div style="background:linear-gradient(160deg,#FF6A3D,#FFC1A8)"></div>
+          <div style="background:linear-gradient(160deg,#14162B,#5B6078)"></div>
+          <div style="background:linear-gradient(160deg,#2BB59A,#B9F0E2)"></div>
+          <div style="background:linear-gradient(160deg,#F2C94C,#FF6A3D)"></div>
+          <div style="background:linear-gradient(160deg,#8B8EFF,#14162B)"></div>
+          <div style="background:linear-gradient(160deg,#B9F0E2,#3B3FE0)"></div>
+          <div style="background:linear-gradient(160deg,#FFC1A8,#F2C94C)"></div>
+        </div>
+        <div class="proj-b">
+          <span class="meta">Web development · UI/UX</span>
+          <h3>Wallpaper Website</h3>
+          <p>A website for browsing and downloading wallpapers.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="frame" id="experience">
+    <div class="tag">Frame / Experience &amp; Education</div>
+    <h2>Where I've worked and trained</h2>
+    <div class="two">
+      <article class="card">
+        <span class="when">6 months</span>
+        <h3>Freelancer</h3>
+        <p class="sub">Web Development, UI/UX Design &amp; Virtual Assistance</p>
+        <p>Delivered web, design and virtual assistant work for clients as a freelancer.</p>
+      </article>
+      <article class="card">
+        <span class="when">2024 – 2026</span>
+        <h3>Aptech</h3>
+        <p class="sub">Computer training</p>
+        <p>Trained in web development and design, the foundation for the sites I build today.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="frame about" id="about">
+    <div>
+      <div class="tag">Frame / About</div>
+      <h2>About me</h2>
+      <p>I'm a web developer and UI/UX designer who builds real websites, from design in Figma to code in VS Code. I've built a crypto writing website and a wallpaper website.</p>
+      <p>I'm Aptech-trained, with freelance experience and added strength in virtual assistance. Years of gaming taught me strategy and teamwork, so I solve problems fast.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>Based in</dt><dd>Enugu, Nigeria</dd></div>
+      <div><dt>Focus</dt><dd>Web dev · UI/UX</dd></div>
+      <div><dt>Also</dt><dd>Virtual assistance</dd></div>
+      <div><dt>Tools</dt><dd>VS Code, Figma</dd></div>
+      <div><dt>Status</dt><dd>Open to work</dd></div>
+    </dl>
+  </section>
+
+  <section class="contact" id="contact">
+    <div>
+      <div class="tag">Frame / Contact</div>
+      <h2>Have a website in mind? Let's talk.</h2>
+    </div>
+    <div class="lines">
+      <div class="line"><small>Email</small><span class="val" id="v-email">drexrex337@gmail.com</span><button class="copy" type="button" id="c-email" data-t="v-email">Copy</button></div>
+      <div class="line"><small>Phone</small><span class="val" id="v-phone">08059236815</span><button class="copy" type="button" id="c-phone" data-t="v-phone">Copy</button></div>
+      <div class="line"><small>Location</small><span class="val">Enugu State, Nigeria</span></div>
+    </div>
+  </section>
+
+  <footer>© 2026 Hatesin Marajah Onwudiwe · designed in Figma, built in VS Code</footer>
+</main>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click', function(){
+    var el=document.getElementById(b.dataset.t), txt=el.textContent;
+    function done(){b.textContent='Copied'; setTimeout(function(){b.textContent='Copy'},1500)}
+    function fallback(){var r=document.createRange(); r.selectNodeContents(el); var s=getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent='Selected, press copy'}
+    try{ navigator.clipboard.writeText(txt).then(done, fallback) }catch(e){ fallback() }
+  });
+});
+</script>
+
+</body>
+</html>
